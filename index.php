@@ -25,7 +25,7 @@ if (isset($_POST['btnSignIn'])) {
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
       <a href="#" class="navbar-brand">
-        <img src="assets/dist/img/Slogo.png" alt="Saba Logo" class="brand-image img-circle elevation-3"
+        <img src="assets/dist/img/sLogo.png" alt="Saba Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">Saba <em>Studio</em></span>
       </a>
