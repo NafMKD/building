@@ -19,7 +19,7 @@ class Login extends db
 			$sqli = mysqli_fetch_assoc($query);
 			$id = $sqli['id'];
 			$_SESSION['id']= $id;
-			header('location: admin/home.php');
+			header('location: Admin/home.php');
 		}else{
 			$msg = "Username or Password Incorect";
 			return $msg;
