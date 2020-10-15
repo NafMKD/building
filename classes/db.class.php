@@ -5,10 +5,16 @@
  */
 class db
 {
+	/*
 	private $host = "localhost";
 	private $user = "root";
 	private $pwd = "";
-	private $dbname = "building";
+	private $dbname = "building";*/
+	
+	private $host = "sql2.freemysqlhosting.net";
+	private $user = "sql2371060";
+	private $pwd = "cV8%aQ6*";
+	private $dbname = "sql2371060";
 
 	protected function conn(){
 		$db = mysqli_connect($this->host, $this->user, $this->pwd, $this->dbname);
