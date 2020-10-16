@@ -183,8 +183,6 @@ error_reporting(0);
                     </a>
                 </li>
 
-                <li class="nav-header">EXAMPLES</li>
-
 
             </ul>
         </nav>
