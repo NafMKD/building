@@ -203,6 +203,42 @@ class fetchNormal extends db
 			}
 			return $array;
         }
+	}
+	
+	public function fetchNormalFeeType($type, $props='') {
+        if($type == "ALL"){
+            $array = array();
+			$query = mysqli_query($this->conn(), "SELECT * FROM feetype ORDER BY id DESC");
+			while($row = mysqli_fetch_assoc($query)){
+				$array[] = $row;
+			}
+			return $array;
+        }elseif($type == "INDIVIDUAL"){
+            $array = array();
+			$query = mysqli_query($this->conn(), "SELECT * FROM feetype WHERE  fee_type = '$props' ORDER BY id DESC");
+			while($row = mysqli_fetch_assoc($query)){
+				$array[] = $row;
+			}
+			return $array;
+        }
+	}
+	
+	public function fetchNormalBank($type, $props='') {
+        if($type == "ALL"){
+            $array = array();
+			$query = mysqli_query($this->conn(), "SELECT * FROM bankname ORDER BY id DESC");
+			while($row = mysqli_fetch_assoc($query)){
+				$array[] = $row;
+			}
+			return $array;
+        }elseif($type == "INDIVIDUAL"){
+            $array = array();
+			$query = mysqli_query($this->conn(), "SELECT * FROM bankname WHERE  bank_id = '$props' ORDER BY id DESC");
+			while($row = mysqli_fetch_assoc($query)){
+				$array[] = $row;
+			}
+			return $array;
+        }
     }
 
 

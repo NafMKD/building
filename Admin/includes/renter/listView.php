@@ -15,12 +15,12 @@ if(isset($_POST['btnStatFilter'])){
             <div class="card-header d-flex p-0">
                 <h3 class="card-title p-3">Filter :</h3>
                 <ul class="nav nav-pills ml-auto p-2 mr-5">
-                    <li class="nav-item"><a class="nav-link <?php if (isset($_GET['listView']) && isset($_GET['floor'])) {
+                    <li class="nav-item"><a class="nav-link <?php if (isset($_GET['listViewRenter']) && isset($_GET['floor'])) {
                                                                 echo "active";
-                                                            } ?>" href="?listView&floor">Floor</a></li>
-                    <li class="nav-item"><a class="nav-link <?php if (isset($_GET['listView']) && isset($_GET['stat'])) {
+                                                            } ?>" href="?listViewRenter&floor">Floor</a></li>
+                    <li class="nav-item"><a class="nav-link <?php if (isset($_GET['listViewRenter']) && isset($_GET['stat'])) {
                                                                 echo "active";
-                                                            } ?>" href="?listView&stat">Status</a></li>
+                                                            } ?>" href="?listViewRenter&stat">Status</a></li>
                 </ul>
             </div>
         </div>
@@ -64,6 +64,7 @@ if(isset($_POST['btnStatFilter'])){
         <table id="dataTable" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Full Name</th>
                     <th>Phone </th>
                     <th>Room Number</th>
@@ -72,13 +73,16 @@ if(isset($_POST['btnStatFilter'])){
                 </tr>
             </thead>
             <tbody>
-                <?php if(isset($_GET['listView'])): 
+                <?php if(isset($_GET['listViewRenter'])): 
+                $cnt = 1;
                     foreach($renterAll as $key){
+                        
                     $contractID = $obj_fetchNormal->fetchNormalContract("INDIVIDUAL", $key['contract_id']);
                     $roomId = $obj_fetchNormal->fetchNormalRooms("ROOM", $contractID[0]['room_id']);
                     $floor_id = $obj_fetchNormal->fetchNormalFloor("INDIVIDUAL", $roomId[0]['floor_id']);
                 ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($cnt); ?></td>
                         <td><?php echo htmlspecialchars($key['fullName']); ?></td>
                         <td><?php echo htmlspecialchars($key['phone']); ?></td>
                         <td>
@@ -92,21 +96,21 @@ if(isset($_POST['btnStatFilter'])){
                             </a>
                         </td>
                         <td>
-                            <a href="?renter.php?listView&view=<?php echo htmlspecialchars($key['renter_id']); ?>">
-                                <button class="btn btn-primary btn-sm btn-flat">
+                            <a href="?renter.php?listViewRenter&view=<?php echo htmlspecialchars($key['renter_id']); ?>">
+                                <button class="btn btn-primary btn-sm btn-flat btn-xs">
                                     <i class="fas fa-eye"></i>
                                     View
                                 </button>
                             </a>
-                            <a href="?renter.php?listView&edit=<?php echo htmlspecialchars($key['renter_id']); ?>">
-                                <button class="btn btn-primary btn-sm btn-flat">
+                            <a href="?renter.php?listViewRenter&edit=<?php echo htmlspecialchars($key['renter_id']); ?>">
+                                <button class="btn btn-info btn-sm btn-flat btn-xs">
                                     <i class="fas fa-edit"></i>
                                     Edit
                                 </button>
                             </a>
                         </td>
                     </tr>
-                <?php }endif ?>
+                <?php $cnt=$cnt+1;}endif ?>
             </tbody>
         </table>
     </div>

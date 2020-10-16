@@ -15,16 +15,13 @@ class Register extends db
 
     private function idGenenetor($type){
         $array = array();
-		$query = mysqli_query($this->conn(), "SELECT * FROM '$type'");
+		$query = mysqli_query($this->conn(), "SELECT * FROM $type");
         while($row = mysqli_fetch_assoc($query)){
-            $array[] = $row["id"];
+            $array[] = $row["renter_id"];
         }
         return $array;
     }
 
-    private function stringEscaper($props){
-        return mysqli_real_escape_string($this->conn, $props);
-    }
     ######################################################################
 
     //PUBLIC USE
@@ -36,11 +33,10 @@ class Register extends db
         }else{
         	$this->id = end($idgenarray) + 1;
         }
-        $fullName = $this->stringEscaper($fullName);
-        $phone = $this->stringEscaper($phone);
         $date = $this->dateGenenetor("m/d/Y");
         $query = "INSERT INTO renterperson (renter_id, fullName, phone, dateRegisterd) VALUES('$this->id', '$fullName', '$phone', '$date')";
         mysqli_query($this->conn(), $query);
+        return $this->id;
         
     }
 
@@ -53,10 +49,6 @@ class Register extends db
         }else{
         	$this->id = end($idgenarray) + 1;
         }
-        $renter_id = $this->stringEscaper($renter_id);
-        $room_id = $this->stringEscaper($room_id);
-        $startDate = $this->stringEscaper($startDate);
-        $endDate = $this->stringEscaper($endDate);
         $date = $this->dateGenenetor("m/d/Y");
 
         $query = "INSERT INTO renterperson (contract_id, renter_id, room_id, startDate, endDate, isActive, dateRegisterd) VALUES('$this->id', '$renter_id', '$room_id', '$startDate', '$endDate', 1, '$date')";

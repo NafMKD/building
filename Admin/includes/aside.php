@@ -2,6 +2,7 @@
 if(!isset($_SESSION['id'])){
     header("location: error.php?session");
 }
+error_reporting(0);
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -90,13 +91,13 @@ if(!isset($_SESSION['id'])){
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="renter.php?addNew" class="nav-link <?php if(isset($_GET['addNew'])) echo "active"; ?>">
+                            <a href="renter.php?addNewRenter" class="nav-link <?php if(isset($_GET['addNewRenter'])) echo "active"; ?>">
                                 <i class="fas fa-user-plus nav-icon"></i>
                                 <p>New Renter</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="renter.php?listView" class="nav-link <?php if(isset($_GET['listView'])) echo "active"; ?>">
+                            <a href="renter.php?listViewRenter" class="nav-link <?php if(isset($_GET['listViewRenter'])) echo "active"; ?>">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Renters List</p>
                             </a>
@@ -104,15 +105,60 @@ if(!isset($_SESSION['id'])){
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="revenue.php" class="nav-link <?php if (isset($revactive)) {
-                                                                echo ($revactive);
-                                                            } ?>">
+                <li class="nav-item has-treeview <?php if (isset($contractive)) {
+                                                            echo "menu-open";
+                                                        } ?>">
+                    <a href="#" class="nav-link <?php if (isset($contractive)) {
+                                                            echo ($contractive);
+                                                        } ?>">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>
+                            Contract
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="contract.php?addNewContract" class="nav-link <?php if(isset($_GET['addNewContract'])) echo "active"; ?>">
+                                <i class="fas fa-user-plus nav-icon"></i>
+                                <p>New Contract</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contract.php?listViewContract" class="nav-link <?php if(isset($_GET['listViewContract'])) echo "active"; ?>">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Contract List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview <?php if (isset($revactive)) {
+                                                            echo "menu-open";
+                                                        } ?>">
+                    <a href="#" class="nav-link <?php if (isset($revactive)) {
+                                                            echo ($revactive);
+                                                        } ?>">
                         <i class="nav-icon fas fa-chart-area"></i>
                         <p>
                             Revenue
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="revenue.php?addNewRevenue" class="nav-link <?php if(isset($_GET['addNewRevenue'])) echo "active"; ?>">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>Add Revenue</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="revenue.php?listViewRevenue" class="nav-link <?php if(isset($_GET['listViewRevenue'])) echo "active"; ?>">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Revenue List</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">
